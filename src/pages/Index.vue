@@ -86,6 +86,16 @@
                       </div>
                     </q-carousel-slide>
                     <q-carousel-slide name="tv" class="column no-padding ">
+                      <div class='sec'>
+                        <div class='sec-head'>
+                          车辆来源分析
+                        </div>
+                        <div class='sec-body comf relative-position'>
+                          <div class="absolute-full">
+                            <echarts :options='carSource' />
+                          </div>
+                        </div>
+                      </div>
                     </q-carousel-slide>
                   </q-carousel>
                 </div>
@@ -99,6 +109,7 @@
               <div class="cbox ">
                 <div id="home-map" class="map">
                 </div>
+                <MultiPreviewCtrl></MultiPreviewCtrl>
               </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6 ">
@@ -169,16 +180,99 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
           <div class="column full-height q-col-gutter-sm">
             <div class="col-5">
-              <div class="bbox"></div>
+              <div class="bbox">
+                <div class='sec transparent'>
+                  <div class='sec-head'>
+                    产业检测分析
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <q-item dark clickable v-ripple>
+                        <q-item-section side top>
+                          <img src="statics/icons/ico (4).png" class="im" />
+                        </q-item-section>
+                        <q-item-section>
+                          <q-item-label class="">旅游单位总数</q-item-label>
+                          <q-item-label class="t1">200
+                            <span style="font-size:.5em;margin-left:5px">家</span>
+                          </q-item-label>
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                    <div class="col-6">
+                      <q-item dark clickable v-ripple>
+                        <q-item-section side top>
+                          <img src="statics/icons/ico (5).png" class="im" />
+                        </q-item-section>
+                        <q-item-section>
+                          <q-item-label class="">旅游单位总收益</q-item-label>
+                          <q-item-label class="t2">200
+                            <span style="font-size:.5em;margin-left:5px">万</span>
+                          </q-item-label>
+                        </q-item-section>
+                      </q-item>
+                    </div>
+                  </div>
+                  <div class='sec-body comf relative-position'>
+                    <div class="absolute-full">
+                      <q-markup-table flat class="no-border-radius transparent text-white">
+                        <thead>
+                          <tr>
+                            <th colspan="6" class="text-left ">
+                              <span class='text-bold text-h6'>旅游单位数量与产业分布</span>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="tbd">
+                          <tr>
+                            <td class="text-center">单位</td>
+                            <td class="text-center">景区</td>
+                            <td class="text-center">酒店</td>
+                            <td class="text-center">旅行社</td>
+                            <td class="text-center">农家乐</td>
+                            <td class="text-center">娱乐设备</td>
+                          </tr>
+                          <tr style="background:#092154">
+                            <td class="text-center" style="border-left:1px solid;">数量</td>
+                            <td class="text-center" style="border-left:1px solid;">237</td>
+                            <td class="text-center" style="border-left:1px solid;">9</td>
+                            <td class="text-center" style="border-left:1px solid;">37</td>
+                            <td class="text-center" style="border-left:1px solid;">4.3</td>
+                            <td class="text-center" style="border-left:1px solid;border-right:1px solid;">4.3</td>
+                          </tr>
+                          <tr>
+                            <td class="text-center">产值（万元）</td>
+                            <td class="text-center">262</td>
+                            <td class="text-center">16</td>
+                            <td class="text-center">23</td>
+                            <td class="text-center">6</td>
+                            <td class="text-center">6</td>
+                          </tr>
+                        </tbody>
+                      </q-markup-table>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-7">
-              <div class="bbox"></div>
+              <div class="bbox">
+                <div class='sec'>
+                  <div class='sec-head'>
+                    营销收入
+                  </div>
+                  <div class='sec-body comf relative-position'>
+                    <div class="absolute-full">
+                      <echarts :options='marketing' />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -190,11 +284,12 @@
 import AMap from "AMap";
 import AMapUI from "AMapUI";
 import clock from '../components/clock.vue'
+import MultiPreviewCtrl from '../components/MultiPreviewCtrl'
 export default {
   name: 'PageIndex',
   data () {
     return {
-      slide: 'style',
+      slide: 'tv',
       showForecast: false,
       map: {},
       flow: {
@@ -207,9 +302,117 @@ export default {
     }
   },
   components: {
-    clock
+    clock,
+    MultiPreviewCtrl
   },
   computed: {
+    carSource () {
+      return {
+        geo: {
+          map: 'china',
+          label: {
+            emphasis: {
+              show: true,
+            }
+          },
+          layoutCenter: ['50%', '50%'],
+          layoutSize: '100%',
+          roam: true,
+          itemStyle: {
+            normal: {
+              areaColor: '#132937',
+              borderColor: '#0692a4'
+            },
+            emphasis: {
+              areaColor: '#0b1c2d'
+            }
+          }
+        },
+        visualMap: [{
+          show: false,
+          type: 'continuous',
+          min: 0,
+          max: 400,
+          inRange: {
+            color: ['yellow', '#ff5722'],
+            symbolSize: [0, 10],
+          }
+        }],
+        series: [{
+          name: '车辆来源地',
+          type: 'effectScatter',
+          coordinateSystem: 'geo',
+          rippleEffect: {
+            scale: 5,
+            period: 4,
+            brushType: 'stroke'
+          },
+          symbol: 'circle',
+          label: {
+            show: true,
+            position: 'bottom',
+            "formatter": "{@[2]}"
+          },
+          itemStyle: {
+            opacity: .5
+          },
+          data: [
+            [121.4648, 31.2891, '上海', 100],
+            [116.4551, 40.2539, '北京', 200],
+            [118.1689, 24.6478, '厦门', 300],
+            [113.5107, 23.2196, '广州', 320],
+            [106.6992, 26.7682, '贵阳', 226],
+
+          ]
+
+        },
+        {
+          type: 'lines',
+          coordinateSystem: 'geo',
+          effect: {
+            show: true,
+            symbolSize: 5,
+            period: 4,
+            symbol: 'arrow',
+            trailLength: .4,
+            loop: true,
+          },
+          lineStyle: {
+            width: 2,
+            curveness: .4
+
+          },
+          data: [{
+            coords: [
+              [116.4551, 40.2539],
+              [121.4648, 31.2891]
+            ]
+          }, {
+            coords: [
+              [118.1689, 24.6478],
+              [121.4648, 31.2891]
+            ]
+          }, {
+            coords: [
+              [116.4551, 40.2539],
+              [121.4648, 31.2891]
+            ]
+          }, {
+            coords: [
+              [113.5107, 23.2196],
+              [121.4648, 31.2891]
+            ]
+          }, {
+            coords: [
+              [106.6992, 26.7682],
+              [121.4648, 31.2891]
+            ]
+          }],
+
+        }
+        ]
+      }
+    },
     comfortDegree () {
       let max = 0;
       max = 26000;
@@ -487,6 +690,117 @@ export default {
         ]
       };
     },
+    marketing () {
+      return {
+        title: [{
+          left: 'right',
+          text: '{a|今日营销} {b|12312312} {a|元}',
+          textStyle: {
+
+            rich: {
+              a: {
+                color: '#76d6ca',
+                lineHeight: 10
+              },
+              b: {
+                fontSize: 18,
+                color: '#f28d3c'
+              },
+
+            }
+          }
+        }, {
+          top: '55%',
+          left: 'center',
+          text: '标题'
+        }],
+        tooltip: {
+          trigger: 'axis'
+        },
+        xAxis: [{
+          data: ['餐饮', '休闲', '交通', '购物', '娱乐']
+        }, {
+          data: ['餐饮', '休闲', '交通', '购物', '娱乐'],
+          gridIndex: 1
+        }],
+        yAxis: [{
+          splitLine: {
+            show: false
+          },
+          name: '营销收入（万元）',
+          //nameRotate:90,
+
+        }, {
+          splitLine: {
+            show: false
+          },
+          gridIndex: 1
+        }],
+        grid: [{
+          bottom: '60%',
+          left: '13%'
+        }, {
+          left: '13%',
+          top: '60%',
+          bottom: '10%'
+        }],
+        series: [{
+          type: 'line',
+          symbol: 'circle',
+          symbolSize: '8',
+          smooth: true,
+          itemStyle: {
+            color: '#76d6ca'
+          },
+          lineStyle: {
+            color: '#76d6ca'
+          },
+          data: [200, 220, 360, 420, 200],
+        }, {
+          type: 'line',
+          symbol: 'circle',
+          symbolSize: '8',
+          itemStyle: {
+            color: '#f28d3c'
+          },
+          smooth: true,
+          lineStyle: {
+            color: '#f28d3c'
+          },
+          data: [280, 320, 450, 500, 204, 400],
+          xAxisIndex: 1,
+          yAxisIndex: 1
+        }, {
+          type: 'bar',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [{
+                offset: 0,
+                color: '#0660b9' // 0% 处的颜色
+              }, {
+                offset: 1,
+                color: '#00a0de' // 100% 处的颜色
+              }],
+              global: false // 缺省为 false
+            }
+          },
+
+          data: [200, 220, {
+            value: 380,
+            itemStyle: {
+              color: '#71ffe4'
+            }
+          }, 420, 200],
+          xAxisIndex: 1,
+          yAxisIndex: 1
+        }]
+      };
+    }
   },
   methods: {
     initMap () {
@@ -605,105 +919,4 @@ export default {
 
 </script>
 <style lang="scss">
-.bbox {
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  border: 15px solid transparent;
-  border-image: url("../statics/images/bbox.png") 15 15;
-  position: relative;
-}
-
-.cbox {
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  border: 15px solid transparent;
-  border-image: url("../statics/images/cbox.png") 15 15;
-  position: relative;
-}
-
-.bbox > div {
-  background: linear-gradient(
-    to bottom,
-    rgba(48, 108, 188, 0.2),
-    rgba(39, 202, 226, 0.2)
-  );
-}
-
-.tourist .col {
-  text-align: center;
-
-  p {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  p:first-child {
-    font-size: 2.4vh;
-    font-weight: 700;
-    margin-top: 1vh;
-  }
-
-  p:last-child {
-    margin-bottom: 5px;
-    padding: 5px 3px;
-    font-size: 12px;
-    color: #00cfff;
-    background: linear-gradient(
-      to bottom,
-      rgba(48, 108, 188, 0.2),
-      rgba(39, 202, 226, 0.2)
-    );
-  }
-
-  .fp {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-
-  .lp {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-}
-
-#home-map {
-  width: 100%;
-  height: 100%;
-}
-
-.mobile {
-  .comf {
-    flex: initial;
-    height: 25vh;
-  }
-
-  .map {
-    height: 80vh !important;
-  }
-}
-
-.today_line {
-  font-size: 2vh;
-  font-weight: 500;
-  font-family: shsn;
-}
-
-.t1 {
-  font-size: 2.2vh;
-  color: #0086ff;
-  font-family: shsn;
-}
-
-.t2 {
-  font-size: 2.2vh;
-  font-family: shsn;
-  color: #6aebb6;
-}
-
-.im {
-  width: 3.6rem;
-}
 </style>

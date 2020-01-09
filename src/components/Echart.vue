@@ -7,11 +7,11 @@
 </template>
 
 <script>
-  import echarts from 'echarts';
-  
+  import echarts from 'echarts';  
   import('./echarts_theme.json').then(res => {        
     echarts.registerTheme('abc', res.default)
   })
+  
   export default {
     data() {
       return {
@@ -37,18 +37,20 @@
         this.chart.resize()
       },
       initChart() {
+        import('echarts/map/json/china.json').then(res=>{          
+          echarts.registerMap('china', res.default);
+        })
         this.chart.setOption(this.options);
       },
     },
-    mounted() {
-      setTimeout(() => {
+    mounted() {      
         this.initChart();
         window.onresize = () => {
           this.chart.resize()
         }
-      }, 100);
+      }
 
-    },
+    
 
   };
 

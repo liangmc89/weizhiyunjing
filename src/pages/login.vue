@@ -1,7 +1,7 @@
 <template>
   <div class="login-page">
     <div class="login-box">
-      <h5 class="login-title">微云智景大数据运行分析系统</h5>
+      <!-- <h5 class="login-title">微云智景大数据运行分析系统</h5> -->
       <div class="login-form row">
         <div class="form-title col-12">登录账号</div>
         <div class="col-12 q-my-md q-my-xs-xs">
@@ -22,16 +22,19 @@
           <q-btn label='忘记密码？' flat type='a' dense />
         </div>
         <div class="col-12 q-my-md q-my-xs-xs">
-          <q-btn label='登录' class="btn-login" size='lg' @click="login"></q-btn>
+          <q-field class="ql" :error='loginError' borderless :error-message='loginMessage'>
+            <q-btn label='登录' class="btn-login text-white" size='lg' @click="login"></q-btn>
+          </q-field>
         </div>
 
       </div>
     </div>
+    <div id='canvas' class="canvas"></div>
   </div>
-
 </template>
 
 <script>
+// import * as THREE from 'three';
 import { required, minLength, between } from 'vuelidate/lib/validators'
 export default {
   name: 'login',
@@ -39,6 +42,8 @@ export default {
     return {
       userName: '',
       passWord: '',
+      loginError: false,
+      loginMessage: ''
     }
   },
   validations: {
@@ -51,11 +56,50 @@ export default {
   },
   methods: {
     login () {
+      this.$router.push({
+        path: '/platform'
+      })
       this.$v.$touch()
       if (!this.$v.$invalid) {
-        this.$router.push({ path: '/platform' })
+        this.$axios('http://212.64.77.96:8066/op/socketLogin/login', {
+          params: {
+            userName: this.userName,
+            pwd: this.passWord,
+            logIp: 11
+          }
+        }).then(res => {
+          if (res && res.data.code == 200) {
+            this.$q.sessionStorage.set('token', res.data.desc)
+            this.$router.push({
+              path: '/platform'
+            })
+            this.loginError = false
+          } else {
+            this.loginError = true
+            this.loginMessage = '登录失败：' + res.data.msg
+          }
+        }).catch(e => {
+          console.log(e)
+          this.loginError = true
+          this.loginMessage = e.message
+        })
+
       }
-    }
+
+    },
+    // draw(){
+    //   let canvas=document.getElementById('#canvas');
+    //   let width=canvas.clientWidth
+    //   let height=canvas.clientHeight
+
+    //   let scene=new THREE.Scene();
+    //   let camera=new THREE.PerspectiveCamera(75,width/height,0.1,100);
+    //   let renderer=new THREE.WebGLRenderer();
+    //   renderer.setSize(width,height);
+    //   canvas.appendChild(renderer.domElement)
+
+
+    // }
   }
 }
 
@@ -65,7 +109,7 @@ export default {
   width: 100vw;
   height: 100vh;
   position: relative;
-  background: url(../statics/images/index_bg.jpg) no-repeat 50% 50% / cover;
+  // background: url(../statics/images/index_bg.jpg) no-repeat 50% 50% / cover;
   .login-title {
     text-align: center;
     color: rgb(156, 184, 240);
@@ -110,5 +154,15 @@ export default {
       font-size: 24px;
     }
   }
+}
+.ql {
+  .q-field__append {
+    width: 0;
+    display: none;
+  }
+}
+.canvas {
+  width: 100%;
+  height: 100%;
 }
 </style>

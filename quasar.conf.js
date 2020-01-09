@@ -51,7 +51,7 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['SessionStorage','Notify']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -64,6 +64,13 @@ module.exports = function (ctx) {
       showProgress: true,
       gzip: false,
       analyze: false,
+      env: ctx.dev ?
+        { // 在开发状态下我们拥有以下属性
+          API: JSON.stringify('http://212.64.77.96:8066')
+        } :
+        { // 在构建状态（生产版本）下
+          API: JSON.stringify('http://212.64.77.96:8066')
+        },
       // Options below are automatically set depending on the env, set them if you want to override
       // preloadChunks: false,
       // extractCSS: false,
@@ -82,7 +89,15 @@ module.exports = function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
+      proxy: {
+        '/api': {
+          target: 'http://212.64.77.96:8066',
+          pathRewrite: {
+            '^/api': ''
+          }
+        }
+      }
     },
 
     // animations: 'all', // --- includes all animations

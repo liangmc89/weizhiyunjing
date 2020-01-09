@@ -7,8 +7,12 @@ const routes = [{
     component: () => import('layouts/MyLayout.vue'),
     children: [{
       path: '',
-      name:'index',
+      name: 'index',
       component: () => import('pages/Index.vue')
+    }, {
+      path: 'bigdata',
+      name: 'bigdata',
+      component: () => import('pages/bigdata.vue')
     }]
   }
 ]
