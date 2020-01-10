@@ -13,6 +13,10 @@ const routes = [{
       path: 'bigdata',
       name: 'bigdata',
       component: () => import('pages/bigdata.vue')
+    },{
+      path: 'tourist',
+      name: 'tourist',
+      component: () => import('pages/tourist.vue')
     }]
   }
 ]

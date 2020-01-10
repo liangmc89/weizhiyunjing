@@ -4,7 +4,7 @@
       <div class="row  q-px-md-sm q-px-lg-md q-px-sm-xs q-px-xs-sm full-height q-col-gutter-xs-y-sm q-col-gutter-xs-x-none q-col-gutter-md-sm q-col-gutter-sm-none q-col-gutter-lg-sm q-col-gutter-xl-sm ">
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
           <div class="column fit q-col-gutter-y-sm">
-            <div class="col-3">
+            <div class="col-lg-3 col-xl-3 col-md-3 col-sm-auto col-auto">
               <div class="bbox ">
                 <div class="fit column ">
                   <div class="col-7">
@@ -21,7 +21,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-3">
+            <div class="col-lg-3 col-xl-3 col-md-3 col-sm-auto col-auto">
               <div class="bbox">
                 <div class="column full-height">
                   <div class="col-auto">
@@ -68,7 +68,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-xl-6 col-md-6 col-sm-auto col ">
               <div class="bbox">
                 <div class='sec'>
                   <div class='sec-head'>
