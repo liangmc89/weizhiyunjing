@@ -2,7 +2,7 @@
   <q-page class="my-page">
     <div class="page-box">
       <div class="row  q-px-md-sm q-px-lg-md q-px-sm-xs q-px-xs-sm full-height q-col-gutter-xs-y-sm q-col-gutter-xs-x-none q-col-gutter-md-sm q-col-gutter-sm-none q-col-gutter-lg-sm q-col-gutter-xl-sm ">
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
           <div class="column fit q-col-gutter-y-sm">
             <div class="col-lg-6 col-xl-6 col-md-6 col-sm-auto ">
               <div class="bbox ">
@@ -19,14 +19,32 @@
               </div>
             </div>
             <div class="col-lg-6 col-xl-6 col-md-6 col-sm-auto  ">
-              <div class="bbox">
-                <div class='sec'>
-                  <div class='sec-head'>
-                    线上应用偏好分析
+              <div class="row full-height  q-col-gutter-xs-x-none q-col-gutter-md-x-sm q-col-gutter-sm-none q-col-gutter-lg-x-sm q-col-gutter-xl-x-sm">
+                <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                  <div class="bbox ">
+                    <div class='sec'>
+                      <div class='sec-head'>
+                        基本信息分析（年龄段分析）
+                      </div>
+                      <div class='sec-body comf relative-position'>
+                        <div class="absolute-full">
+                          <echarts :options='age' />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class='sec-body comf relative-position'>
-                    <div class="absolute-full">
-                      <echarts :options='onlineApp' />
+                </div>
+                <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 col-xs-12">
+                  <div class="bbox ">
+                    <div class='sec'>
+                      <div class='sec-head'>
+                        基本信息分析（年龄段分析）
+                      </div>
+                      <div class='sec-body comf relative-position'>
+                        <div class="absolute-full">
+                          <echarts :options='age' />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -34,9 +52,9 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-xs-12 ">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
           <div class="column fit q-col-gutter-y-sm">
-            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xs-auto ">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-auto ">
               <div class="bbox">
                 <div class='sec transparent'>
                   <div class='sec-head'>
@@ -50,7 +68,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xs-auto ">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-auto ">
               <div class="bbox">
                 <div class='sec'>
                   <div class='sec-head'>
@@ -66,7 +84,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
           <div class="column full-height q-col-gutter-sm">
             <div class="col-6">
               <div class="bbox">
@@ -97,7 +115,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </q-page>

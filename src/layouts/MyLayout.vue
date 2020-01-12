@@ -8,7 +8,7 @@
           <q-tabs indicator-color="transparent" active-color="main" class="text-main layout-title desktop-only">
             <q-route-tab :to='{name:"bigdata"}' label='大数据网络筛查 '></q-route-tab>
             <q-route-tab :to='{name:"tourist"}' label='景区游客画像'></q-route-tab>
-            <q-route-tab to='' label='景区游客管理'></q-route-tab>
+            <q-route-tab :to='{name:"touristManager"}' label='景区游客管理'></q-route-tab>
             <q-route-tab to='' label='游后评价分析'></q-route-tab>
             <q-route-tab :to='{name:"index"}'>
               <div class="platform-name">文旅实时运行大数据分析 </div>
