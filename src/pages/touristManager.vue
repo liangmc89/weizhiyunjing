@@ -1,34 +1,36 @@
 <template>
   <q-page class="my-page">
     <div class="page-box">
-      <div class="row  q-px-md-sm q-px-lg-md q-px-sm-xs q-px-xs-sm full-height q-col-gutter-xs-y-sm q-col-gutter-xs-x-none q-col-gutter-md-sm q-col-gutter-sm-none q-col-gutter-lg-sm q-col-gutter-xl-sm ">
+      <div
+        class="row  q-px-md-sm q-px-lg-md q-px-sm-xs q-px-xs-sm full-height q-col-gutter-xs-y-sm q-col-gutter-xs-x-none q-col-gutter-md-sm q-col-gutter-sm-none q-col-gutter-lg-sm q-col-gutter-xl-sm ">
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 ">
           <div class="column fit q-col-gutter-y-sm">
             <div class="col-lg-6 col-xl-6 col-md-6 col-sm-auto ">
               <div class="bbox ">
                 <div class='sec'>
                   <div class='sec-head'>
-                    基本信息分析（年龄段分析）
+                    客流实时分析
                   </div>
                   <div class='sec-body comf relative-position'>
                     <div class="absolute-full">
-                      <echarts :options='age' />
+                      <echarts :options='carSource' />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-lg-6 col-xl-6 col-md-6 col-sm-auto  ">
-              <div class="row full-height  q-col-gutter-xs-x-none q-col-gutter-md-x-sm q-col-gutter-sm-none q-col-gutter-lg-x-sm q-col-gutter-xl-x-sm">
+              <div
+                class="row full-height  q-col-gutter-xs-x-none q-col-gutter-md-x-sm q-col-gutter-sm-none q-col-gutter-lg-x-sm q-col-gutter-xl-x-sm">
                 <div class="col-lg-6 col-xl-6 col-md-6 col-sm-12 col-xs-12">
                   <div class="bbox ">
                     <div class='sec'>
                       <div class='sec-head'>
-                        基本信息分析（年龄段分析）
+                        景区舒适度
                       </div>
                       <div class='sec-body comf relative-position'>
                         <div class="absolute-full">
-                          <echarts :options='age' />
+                          <echarts :options='comfort' />
                         </div>
                       </div>
                     </div>
@@ -38,11 +40,11 @@
                   <div class="bbox ">
                     <div class='sec'>
                       <div class='sec-head'>
-                        基本信息分析（年龄段分析）
+                        投诉建议
                       </div>
                       <div class='sec-body comf relative-position'>
                         <div class="absolute-full">
-                          <echarts :options='age' />
+                          <echarts :options='complaint' />
                         </div>
                       </div>
                     </div>
@@ -56,13 +58,13 @@
           <div class="column fit q-col-gutter-y-sm">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-auto ">
               <div class="bbox">
-                <div class='sec transparent'>
+                <div class='sec '>
                   <div class='sec-head'>
-                    归属地分析（游客来源）
+                    游客入园时段分析
                   </div>
                   <div class='sec-body comf relative-position'>
                     <div class="absolute-full">
-                      <echarts :options='touristSource' />
+                      <echarts :options='timeSlot' />
                     </div>
                   </div>
                 </div>
@@ -72,11 +74,11 @@
               <div class="bbox">
                 <div class='sec'>
                   <div class='sec-head'>
-                    抵达工具分析
+                    一周停车时长统计
                   </div>
                   <div class='sec-body comf relative-position'>
                     <div class="absolute-full">
-                      <echarts :options='vehicle' />
+                      <echarts :options='parkingDuration' />
                     </div>
                   </div>
                 </div>
@@ -84,565 +86,590 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
-          <div class="column full-height q-col-gutter-sm">
-            <div class="col-6">
-              <div class="bbox">
-                <div class='sec '>
-                  <div class='sec-head'>
-                    线下消费分析
-                  </div>
-                  <div class='sec-body comf relative-position'>
-                    <div class="absolute-full">
-                      <echarts :options='consumption' />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="bbox">
-                <div class='sec'>
-                  <div class='sec-head'>
-                    本地游客逗留时间分析
-                  </div>
-                  <div class='sec-body comf relative-position'>
-                    <div class="absolute-full">
-                      <echarts :options='stay' />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </q-page>
 </template>
 <script>
-import clock from '../components/clock.vue'
+  import clock from '../components/clock.vue'
 
-export default {
-  name: 'PageIndex',
-  data () {
-    return {
-      showForecast: false,
-      flow: {
-        now_tourist: 10,
-        day_tourist: 100,
-        day_car: 200,
-        now_car: 50,
-        parking_lot: 500
-      },
-    }
-  },
-  components: {
-    clock,
+  export default {
+    name: 'PageIndex',
+    data() {
+      return {
+        showForecast: false,
+        flow: {
+          now_tourist: 10,
+          day_tourist: 100,
+          day_car: 200,
+          now_car: 50,
+          parking_lot: 500
+        },
+      }
+    },
+    components: {
+      clock,
 
-  },
-  computed: {
-    vehicle () {
-      var total = 1453,
-        color = ['#fd3fb2', '#6e5eff', '#ff9745', '#22ced4'],
-        dataItem = [{
-          name: '大巴',
-          value: 200,
-        }, {
-          name: '动车',
-          value: 400
-        }, {
-          name: '飞机',
-          value: 350
-        }, {
-          name: '自驾游',
-          value: 503
-        }],
-        series = [];
-      dataItem.forEach(function (item, index) {
-        var per = (1 / dataItem.length) * 100
-        var radius1 = (per - 3);
-        var radius2 = per;
-        var x = per * index + 0.5 * per
-        var y = '35%'
-        series.push({
-          type: 'pie',
-          radius: [radius1 * 1.7 + '%', radius2 * 1.7 + '%'],
-          center: [x + '%', y],
-          markPoint: {
-            data: [{
-              symbol: 'triangle',
-              symbolSize: 15,
-              symbolRotate: 0,
-              itemStyle: {
-                normal: {
-                  color: 'rgba(0,0,0,0)'
-                }
+    },
+    computed: {
+      carSource() {
+        return {
+          title: {
+            left: 'left',
+            text: '全国车辆来源TOP5',
+            textStyle: {
+              fontFamily: 'Microsoft YaHei',
+              color: 'white',
+              fontSize: 18,
+              fontWeight: '300'
+            }
+          },
+          grid: {
+            left: '60%'
+          },
+          xAxis: {
+            type: 'category'
+          },
+          yAxis: {
+            type: 'value',
+          },
+          geo: {
+            // left:'left',
+
+            map: 'china',
+            label: {
+
+              emphasis: {
+                show: true,
+                textStyle: {
+                  color: 'rgba(255,255,255,1)'
+                },
+              }
+            },
+            //left:'10%',
+            layoutCenter: ['30%', '50%'],
+            layoutSize: '130%',
+            roam: true,
+            itemStyle: {
+              normal: {
+                borderColor: 'rgba(147, 235, 248, .1)',
+                borderWidth: 1,
+                areaColor: {
+                  type: 'radial',
+                  x: 0.5,
+                  y: 0.5,
+                  r: 0.8,
+                  colorStops: [{
+                    offset: 0,
+                    color: 'rgba(147, 235, 248, 0)' // 0% 处的颜色
+                  }, {
+                    offset: 1,
+                    color: 'rgba(147, 235, 248, 0.02)' // 100% 处的颜色
+                  }],
+                  globalCoord: false // 缺省为 false
+                },
+
               },
-              name: item.name,
-              value: dataItem[index].value,
-              x: x + '%',
-              y: (0.5 + (1 / dataItem.length) * 0.5) * 100 + '%',
+              emphasis: {
+                areaColor: '#389BB7',
+                borderWidth: 0
+              }
+            },
+          },
+          visualMap: [{
+            show: false,
+            type: 'continuous',
+            min: 0,
+            max: 400,
+            inRange: {
+              color: ['#00f5b8', '#2dc9eb'],
+              symbolSize: [0, 10],
+            }
+          }],
+          series: [{
+              name: '车辆来源地',
+              type: 'effectScatter',
+              coordinateSystem: 'geo',
+              rippleEffect: {
+                scale: 5,
+                period: 4,
+                brushType: 'stroke'
+              },
+              symbol: 'circle',
               label: {
                 show: true,
                 position: 'bottom',
-                formatter: '{a|{c}}\n{b|{b}}',
+                "formatter": "{@[2]}"
+              },
+              itemStyle: {
+                opacity: .5
+              },
+              data: [
+                [121.4648, 31.2891, '上海', 800],
+                [116.4551, 40.2539, '北京', 200],
+                [118.1689, 24.6478, '厦门', 300],
+                [113.5107, 23.2196, '广州', 320],
+                [106.6992, 26.7682, '贵阳', 226],
+
+              ]
+
+            },
+            {
+              type: 'bar',
+              barWidth: 20,
+              data: [
+                ['广州', 320],
+                ['厦门', 300],
+                ['贵阳', 226],
+                ['北京', 200],
+                ['上海', 800]
+              ].sort(function (a, b) {
+                return b[1] - a[1]
+              })
+            },
+            {
+              type: 'lines',
+              coordinateSystem: 'geo',
+              effect: {
+                show: true,
+                symbolSize: 5,
+                period: 4,
+                symbol: 'arrow',
+                trailLength: .4,
+                loop: true,
+              },
+              lineStyle: {
+                width: 2,
+                curveness: .4,
+                color: 'yellow'
+
+              },
+              data: [{
+                coords: [
+                  [116.4551, 40.2539],
+                  [121.4648, 31.2891]
+                ]
+              }, {
+                coords: [
+                  [118.1689, 24.6478],
+                  [121.4648, 31.2891]
+                ]
+              }, {
+                coords: [
+                  [116.4551, 40.2539],
+                  [121.4648, 31.2891]
+                ]
+              }, {
+                coords: [
+                  [113.5107, 23.2196],
+                  [121.4648, 31.2891]
+                ]
+              }, {
+                coords: [
+                  [106.6992, 26.7682],
+                  [121.4648, 31.2891]
+                ]
+              }],
+
+            }
+          ]
+        }
+      },
+      comfort() {
+        {
+          var value = 0.2;
+          var data = [value, value, value, ];
+          var option = {
+            title: {
+              text: (value * 100).toFixed(0) + '{a|%}',
+              textStyle: {
+                fontSize: 50,
+                fontFamily: 'Microsoft Yahei',
+                fontWeight: 'normal',
+                color: '#bcb8fb',
                 rich: {
                   a: {
-                    color: '#22ced4',
-                    fontSize: 24,
-                    fontWeight: 'bold',
-                    lineHeight: 40,
-                    fontFamily: ''
-                  },
-                  b: {
-                    color: color[index],
-                    align: 'center',
-                    fontWeight: 'bold',
-                    fontSize: 14,
-                    fontFamily: 'Microsoft YaHei'
-
-                  },
+                    fontSize: 28,
+                  }
                 }
               },
-
-            }]
-          },
-          data: [{
-            name: item.name,
-            value: item.value,
-            labelLine: {
-              show: true,
+              x: 'center',
+              y: '35%'
             },
-            itemStyle: {
-              color: color[index],
-            },
-            emphasis: {
-              label: {
-                show: true,
+            graphic: [{
+              type: 'group',
+              left: 'center',
+              top: '55%',
+              children: [{
+                type: 'text',
+                z: 100,
+                left: '10',
+                top: 'middle',
+                style: {
+                  fill: '#0ee272',
+                  text: '舒适',
+                  font: '48px Microsoft YaHei'
+                }
+              }]
+            }],
+            series: [{
+              type: 'liquidFill',
+              radius: '80%',
+              center: ['50%', '50%'],
+              //  shape: 'roundRect',
+              data: [0.2, 0.18, 0.16, ],
+              backgroundStyle: {
+                color: {
+                  type: 'linear',
+                  x: 1,
+                  y: 0,
+                  x2: 0.5,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 1,
+                    color: 'rgba(68, 145, 253, 0)'
+                  }, {
+                    offset: 0.5,
+                    color: 'rgba(68, 145, 253, .25)'
+                  }, {
+                    offset: 0,
+                    color: 'rgba(68, 145, 253, 1)'
+                  }],
+                  globalCoord: false
+                },
               },
-              labelLine: {
-                show: false,
+              outline: {
+                borderDistance: 0,
+                itemStyle: {
+                  borderWidth: 20,
+                  borderColor: {
+                    type: 'linear',
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [{
+                      offset: 0,
+                      color: 'rgba(11, 226, 114, 0.1)'
+                    }, {
+                      offset: 0.5,
+                      color: 'rgba(11, 226, 114, .25)'
+                    }, {
+                      offset: 1,
+                      color: 'rgba(11, 226, 114, 1)'
+                    }],
+                    globalCoord: false
+                  },
+                  shadowBlur: 10,
+                  shadowColor: '#000',
+                }
+              },
+              color: ['#294D99', '#156ACF', '#1598ED', '#45BDFF'],
+              label: {
+                normal: {
+                  formatter: '',
+                }
               }
-            },
-            label: {
+            }, ]
+          };
+          return option
+        }
+      },
+      timeSlot() {
+        return {
+          tooltip: {
+            show: true,
+            trigger: 'axis'
+          },
+          xAxis: [{
+            type: 'category',
+            boundaryGap: false,
+            axisLine: {
               show: true,
-              position: 'center',
+              lineStyle: {
+                color: '#233e64'
+              },
+            },
+            axisLabel: {
               textStyle: {
-                color: color[index],
-                fontSize: 20,
-                fontWeight: '700'
+                color: '#6a9cd5',
+                margin: 15,
               },
-              formatter: function (p) {
-                return p.percent + '%'
-              }
+            },
+            axisTick: {
+              show: false,
             },
 
-          }, {
-            value: total - item.value,
-            label: {
+          }],
+          yAxis: [{
+            type: 'value',
+            splitNumber: 7,
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: '#233e64'
+              }
+            },
+            axisLine: {
               show: false,
             },
-            labelLine: {
+            axisLabel: {
+              margin: 20,
+              textStyle: {
+                color: '#6a9cd5',
+
+              },
+            },
+            axisTick: {
               show: false,
+            },
+          }],
+          series: [{
+            name: '入园人数',
+            type: 'line',
+            symbolSize: 4,
+            lineStyle: {
+              normal: {
+                color: "#8943e9"
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: {
+                  type: 'linear',
+                  x1: 0,
+                  y1: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [{
+                      offset: .5,
+                      color: '#8943e9'
+                    },
+                    {
+                      offset: 1,
+                      color: '#1e70fc'
+                    }
+                  ]
+                },
+
+                shadowColor: 'rgba(53,142,215, 0.9)',
+                shadowBlur: 20
+              }
+            },
+            data: [
+              ['09时', 400],
+              ['10时', 1105],
+              ['11时', 840],
+              ['12时', 1125],
+              ['13时', 510],
+              ['14时', 920],
+              ['15时', 398],
+              ['16时', 223]
+            ]
+          }]
+        };
+      },
+      complaint() {
+        return {
+
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+              type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            }
+          },
+
+          legend: {
+            data: ['已处理', '未处理'],
+            left: 'center',
+            top: 12,
+            textStyle: {
+              color: "#fff"
+            },
+            itemWidth: 12,
+            itemHeight: 10,
+          },
+          xAxis: {
+            type: 'category',
+            data: ['水慢城', '游子山', '高淳老街', '桠溪慢城'],
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              textStyle: {
+                fontFamily: 'Microsoft YaHei',
+                color: '#ffffff'
+              }
+            },
+          },
+
+          yAxis: {
+            type: 'value',
+            max: '120',
+            axisLine: {
+              show: false,
+            },
+            axisTick: {
+              show: false,
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: '#233e64'
+              }
+            },
+            axisLabel: {
+              margin: 20,
+              textStyle: {
+                color: '#6a9cd5',
+
+              },
+            },
+          },
+          series: [{
+              name: '已处理',
+              type: 'bar',
+              barWidth: '15%',
+              itemStyle: {
+                color: {
+                  type: 'linear',
+                  x1: 0,
+                  y1: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0,
+                    color: '#1ddefd'
+                  }, {
+                    offset: 1,
+                    color: '#1999f0'
+                  }]
+                },
+                barBorderRadius: 12,
+
+              },
+              data: [40, 40, 30, 30]
+            },
+            {
+              name: '未处理',
+              type: 'bar',
+              barWidth: '15%',
+              itemStyle: {
+                color: {
+                  type: 'linear',
+                  x1: 0,
+                  y1: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0,
+                    color: '#ea4e1a'
+                  }, {
+                    offset: 1,
+                    color: '#e3400a'
+                  }]
+                },
+                barBorderRadius: 11,
+              },
+              data: [2, 6, 5, 6]
+            },
+          ]
+        };
+      },
+      parkingDuration() {
+        var data = [
+          ['2小时以内', 200],
+          ['2-4小时', 300],
+          ['4-6小时', 220],
+          ['6-12小时', 50],
+          ['12-24', 55],
+          ['24小时以上', 78]
+        ]
+        var sumValue = 903
+        var series = [];
+        data.forEach((item, i) => {
+          series.push({
+            name: item[0],
+            type: 'pie',
+            clockWise: false, //顺时加载
+            hoverAnimation: false, //鼠标移入变大
+            radius: [65 - i * 15 + '%', 57 - i * 15 + '%'],
+            center: ["30%", "55%"],
+            label: {
+              show: false
             },
             itemStyle: {
-              color: 'rgba(0,0,0,.1)'
-            },
-            emphasis: {
               label: {
                 show: false,
               },
               labelLine: {
-                show: false,
-              }
-            }
-          }]
-        })
-      })
-
-      return {
-        series: series
-      }
-    },
-    touristSource () {
-      return {
-        "animation": true,
-        "legend": {
-          "left": "center",
-          "textStyle": {
-            "color": "#fff",
-            "fontSize": 14
-          },
-          "icon": "circle",
-          "right": "0",
-          "top": "20",
-          // "padding": [30, 60],
-          // "itemGap": 40,
-          "data": ["省内游客", "其他游客", "本市游客", "省外游客"]
-        },
-        "series": [{
-          "type": "pie",
-          "center": ["50%", "50%"],
-          "radius": ["0%", "45%"],
-          "color": ["#FEE449", "#00FFFF", "#00FFA8", "#9F17FF", "#FFE400", "#F76F01", "#01A4F7", "#FE2C8A"],
-          "startAngle": 135,
-          "labelLine": {
-            "normal": {
-              "length": 25
-            }
-          },
-          "label": {
-            "normal": {
-              "formatter": "{b|{b}:}  {per|{d}%} ",
-              "backgroundColor": "rgba(255, 147, 38, 0)",
-              "borderColor": "transparent",
-              "borderRadius": 4,
-              "rich": {
-                "a": {
-                  "color": "#999",
-                  "lineHeight": 22,
-                  "align": "center"
-                },
-                "hr": {
-                  "borderColor": "#aaa",
-                  "width": "100%",
-                  "borderWidth": 1,
-                  "height": 0
-                },
-                "b": {
-                  "color": "#b3e5ff",
-                  "fontSize": 16,
-                  "lineHeight": 33
-                },
-                "c": {
-                  "fontSize": 14,
-                  "color": "#eee"
-                },
-                "per": {
-                  "color": "#FDF44E",
-                  "fontSize": 14,
-                  "padding": [5, 8],
-                  "borderRadius": 2
-                }
+                show: false
               },
-              "textStyle": {
-                "color": "#fff",
-                "fontSize": 16
-              }
-            }
-          },
-          "emphasis": {
-            "label": {
-              "show": true,
-              "formatter": "{b|{b}:}  {per|{d}%}  ",
-              "backgroundColor": "rgba(255, 147, 38, 0)",
-              "borderColor": "transparent",
-              "borderRadius": 4,
-              "rich": {
-                "a": {
-                  "color": "#999",
-                  "lineHeight": 22,
-                  "align": "center"
+              borderWidth: 5,
+            },
+            data: [{
+              value: data[i][1],
+              name: data[i][0]
+            }, {
+              value: sumValue - data[i][1],
+              name: '',
+              itemStyle: {
+                color: "rgba(0,0,0,0.1)",
+                borderWidth: 0
+              },
+              tooltip: {
+                show: false
+              },
+              hoverAnimation: false
+            }]
+          });
+        });
+        var option = {
+          color:['#1ddefd','#ea5019','#a655f1','#f7952d','#2070fc','#59eb96',],
+          legend: {
+            show: true,
+            top: "center",
+            left: '70%',
+            data: 
+              ['2小时以内',
+                '2-4小时',
+                '4-6小时',
+                '6-12小时',
+                '12-24',
+                '24小时以上'              
+            ],           
+            width: 50,
+            padding: [0, 5],
+            itemGap: 25,            
+            textStyle: {
+              rich: {
+                title: {
+                  fontSize: 10,
+                  lineHeight: 10,
+                  color: "rgb(255,255,255)"
                 },
-                "hr": {
-                  "borderColor": "#aaa",
-                  "width": "100%",
-                  "borderWidth": 1,
-                  "height": 0
-                },
-                "b": {
-                  "color": "#fff",
-                  "fontSize": 18,
-                  "lineHeight": 33
-                },
-                "c": {
-                  "fontSize": 14,
-                  "color": "#eee"
-                },
-                "per": {
-                  "color": "#FDF44E",
-                  "fontSize": 25,
-                  "padding": [5, 6],
-                  "borderRadius": 2
+                value: {
+                  fontSize: 14,
+                  lineHeight: 18,
+                  color: "rgb(255,255,255)"
                 }
               }
-            }
+            },
           },
-          "data": [{
-            "name": "省内游客",
-            "value": 3
-          }, {
-            "name": "其他游客",
-            "value": 2
-          }, {
-            "name": "本市游客",
-            "value": 26
-          }, {
-            "name": "省外游客",
-            "value": 24
-          },]
-        }]
-      }
-    },
-    onlineApp () {
-      return {
-        tooltip: {},
-        xAxis: {
-          type: 'category',
-          data: ['抖音', '美团', '大众点评', '携程', '途牛', '去哪儿', '小红书']
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [{
-          itemStyle: {
-            color: {
-              type: 'linear',
-              x: 0,
-              y: 0,
-              x2: 0,
-              y2: 1,
-              colorStops: [{
-                offset: 0,
-                color: '#00a0de' // 0% 处的颜色
-              }, {
-                offset: 1,
-                color: '#0660b9' // 100% 处的颜色
-              }],
-              global: false // 缺省为 false
-            }
-          },
-          data: [120, 200, 150, 80, 70, 110, 130],
-          type: 'bar'
-        }]
-      };
+          series: series
+        }
+        return option
+      },
+
 
     },
-    age () {
-      return {
-        tooltip: {
-          trigger: 'axis'
-        },
-        legend: {
-          data: ['18岁以下', '18-25岁', '26-45岁', '46岁已上']
-        },
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-        },
-        yAxis: {
-          type: 'value'
-        },
-        series: [{
-          name: '18岁以下',
-          type: 'line',
-          stack: '总量',
-          symbol: 'none',
-          data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-          name: '18-25岁',
-          type: 'line',
-          stack: '总量',
-          symbol: 'none',
-          data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-          name: '26-45岁',
-          type: 'line',
-          stack: '总量',
-          symbol: 'none',
-          data: [150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-          name: '46岁已上',
-          type: 'line',
-          stack: '总量',
-          symbol: 'none',
-          data: [320, 332, 301, 334, 390, 330, 320]
-        },
-
-        ]
-      };
+    methods: {
 
     },
-    stay () {
+    mounted() {
 
-      return {
-
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-
-        yAxis: {
-          type: 'category',
-          axisLine: {
-            show: false
-          }
-
-        },
-        xAxis: {
-          axisLine: {
-            show: false
-          }
-        },
-        series: [{
-          tooltip: {
-            show: false
-          },
-          name: 'line',
-          type: 'bar',
-          barGap: '-100%',
-          barWidth: 25,
-          itemStyle: {
-            color: {
-              type: 'linear',
-              x1: 0,
-              y1: 0,
-              x2: 1,
-              y2: 1,
-              colorStops: [{
-                offset: 0.5,
-                color: 'rgba(1,245,185,1)'
-              },
-              {
-                offset: 0.1,
-                color: 'rgba(1,245,185,.6)'
-              },
-              ]
-            }
-          },
-          z: -12,
-          data: [
-            [100, '1小时'],
-            [200, '3小时'],
-            [205, '5小时'],
-            [500, '7小时'],
-            [450, '9小时'],
-            [249, '12小时'],
-            [550, '12小时以上']
-          ]
-        }, {
-          name: '消费金额',
-          type: 'pictorialBar',
-          symbol: 'rect',
-          itemStyle: {
-            color: '#0f375f'
-          },
-          symbolRepeat: true,
-          symbolSize: [5, 25],
-          symbolMargin: 3,
-          z: -10,
-          data: [
-            [100, '1小时'],
-            [200, '3小时'],
-            [205, '5小时'],
-            [500, '7小时'],
-            [450, '9小时'],
-            [249, '12小时'],
-            [550, '12小时以上']
-          ]
-        }]
-      };
-    },
-    consumption () {
-      return {
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
-
-        xAxis: {
-          type: 'category',
-          axisLine: {
-            show: false
-          }
-
-        },
-        yAxis: {
-          axisLine: {
-            show: false
-          }
-        },
-        series: [{
-          tooltip: {
-            show: false
-          },
-          name: 'line',
-          type: 'bar',
-          barGap: '-100%',
-          barWidth: 25,
-          itemStyle: {
-            color: {
-              type: 'linear',
-              x1: 0,
-              y1: 0,
-              x2: 1,
-              y2: 1,
-              colorStops: [{
-                offset: 0,
-                color: 'rgba(1,245,185,1)'
-              },
-              {
-                offset: 0.2,
-                color: 'rgba(1,245,185,.6)'
-              },
-              {
-                offset: 1,
-                color: 'rgba(20,200,212,0.1)'
-              }
-              ]
-            }
-          },
-          z: -12,
-          data: [
-            ['娱乐', 100],
-            ['服装', 200],
-            ['教育', 205],
-            ['餐饮', 500],
-            ['酒店', 450],
-            ['特产', 249],
-            ['套票', 550]
-          ]
-        }, {
-          name: '消费金额',
-          type: 'pictorialBar',
-          symbol: 'rect',
-          itemStyle: {
-            color: '#0f375f'
-          },
-          symbolRepeat: true,
-          symbolSize: [25, 4],
-          symbolMargin: 3,
-          z: -10,
-          data: [
-            ['娱乐', 100],
-            ['服装', 200],
-            ['教育', 205],
-            ['餐饮', 500],
-            ['酒店', 450],
-            ['特产', 249],
-            ['套票', 550]
-          ]
-        }]
-      };
-    },
-
-  },
-  methods: {
-
-  },
-  mounted () {
-
+    }
   }
-}
 
 </script>
 <style lang="scss">

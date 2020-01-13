@@ -8,6 +8,7 @@
 
 <script>
   import echarts from 'echarts';  
+  require('echarts-liquidfill')
   import('./echarts_theme.json').then(res => {        
     echarts.registerTheme('abc', res.default)
   })

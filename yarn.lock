@@ -2940,12 +2940,12 @@ ecc-jsbn@~0.1.1:
 
 echarts-liquidfill@^2.0.5:
   version "2.0.5"
-  resolved "https://registry.npm.taobao.org/echarts-liquidfill/download/echarts-liquidfill-2.0.5.tgz#0d505a75c2dfb69950e18d440bdf3fe1795a0eed"
+  resolved "http://r.cnpmjs.org/echarts-liquidfill/download/echarts-liquidfill-2.0.5.tgz#0d505a75c2dfb69950e18d440bdf3fe1795a0eed"
   integrity sha1-DVBadcLftplQ4Y1EC98/4XlaDu0=
 
 echarts@^4.6.0:
   version "4.6.0"
-  resolved "https://registry.npm.taobao.org/echarts/download/echarts-4.6.0.tgz?cache=0&sync_timestamp=1577465104909&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fecharts%2Fdownload%2Fecharts-4.6.0.tgz#b5a47a1046cec93ceeef954f9ee54751340558ec"
+  resolved "http://r.cnpmjs.org/echarts/download/echarts-4.6.0.tgz#b5a47a1046cec93ceeef954f9ee54751340558ec"
   integrity sha1-taR6EEbOyTzu75VPnuVHUTQFWOw=
   dependencies:
     zrender "4.2.0"
@@ -8560,7 +8560,7 @@ yargs@^7.0.0:
     y18n "^3.2.1"
     yargs-parser "^5.0.0"
 
-zrender@4.2.0:
+zrender@4.2.0, zrender@^4.2.0:
   version "4.2.0"
-  resolved "https://registry.npm.taobao.org/zrender/download/zrender-4.2.0.tgz#d001302e155f28de1f9fc7fcd5c254bad28471cf"
+  resolved "http://r.cnpmjs.org/zrender/download/zrender-4.2.0.tgz#d001302e155f28de1f9fc7fcd5c254bad28471cf"
   integrity sha1-0AEwLhVfKN4fn8f81cJUutKEcc8=

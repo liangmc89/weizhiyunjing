@@ -22,6 +22,11 @@ const routes = [{
         path: 'touristManager',
         name: 'touristManager',
         component: () => import('pages/touristManager.vue')
+      },
+      {
+        path: 'evaluate',
+        name: 'evaluate',
+        component: () => import('pages/evaluate.vue')
       }
     ]
   }
