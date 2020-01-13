@@ -13,10 +13,10 @@
             <q-route-tab :to='{name:"index"}'>
               <div class="platform-name">文旅实时运行大数据分析 </div>
             </q-route-tab>
-            <q-route-tab to='' label='专家互动诊断'></q-route-tab>
-            <q-route-tab to='' label='景区可视化报告'></q-route-tab>
-            <q-route-tab to='' label='营销渠道反馈'></q-route-tab>
-            <q-route-tab to='' label='景区监控'></q-route-tab>
+            <q-route-tab :to='{name:"qa"}' label='专家互动诊断'></q-route-tab>
+            <q-route-tab :to='{name:"visualization"}' label='景区可视化报告'></q-route-tab>
+            <q-route-tab :to='{name:"marketing"}' label='营销渠道反馈'></q-route-tab>
+            <q-route-tab :to='{name:"monitor"}' label='景区监控'></q-route-tab>
           </q-tabs>
         </q-toolbar-title>
       </q-toolbar>

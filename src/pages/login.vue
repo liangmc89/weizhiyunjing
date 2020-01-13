@@ -1,7 +1,7 @@
 <template>
   <div class="login-page">
     <div class="login-box">
-      <!-- <h5 class="login-title">微云智景大数据运行分析系统</h5> -->
+      <h5 class="login-title">微云智景大数据运行分析系统</h5>
       <div class="login-form row">
         <div class="form-title col-12">登录账号</div>
         <div class="col-12 q-my-md q-my-xs-xs">
@@ -109,7 +109,7 @@ export default {
   width: 100vw;
   height: 100vh;
   position: relative;
-  // background: url(../statics/images/index_bg.jpg) no-repeat 50% 50% / cover;
+  background: url(../statics/images/index_bg.jpg) no-repeat 50% 50% / cover;
   .login-title {
     text-align: center;
     color: rgb(156, 184, 240);

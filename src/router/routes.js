@@ -27,6 +27,27 @@ const routes = [{
         path: 'evaluate',
         name: 'evaluate',
         component: () => import('pages/evaluate.vue')
+      },
+      {
+        path: 'visualization',
+        name: 'visualization',
+        component: () => import('pages/visualization.vue')
+      },
+      {
+        path: 'qa',
+        name: 'qa',
+        component: () => import('pages/qa.vue')
+
+      },
+      {
+        path: 'monitor',
+        name: 'monitor',
+        component: () => import('pages/monitor.vue')
+
+      }, {
+        path: 'marketing',
+        name: 'marketing',
+        component: () => import('pages/marketing.vue')
       }
     ]
   }
