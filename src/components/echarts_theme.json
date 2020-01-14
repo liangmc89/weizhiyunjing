@@ -19,7 +19,8 @@
   },
   "grid": {
     "top": "10%",
-    "bottom":"15%"
+    "bottom":"15%",
+    "containLabel":"true"
   },
   "line": {
     "itemStyle": {
