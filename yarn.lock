@@ -1179,9 +1179,9 @@ acorn-walk@^6.1.1:
   integrity sha1-Ejy487hMIXHx9/slJhWxx4prGow=
 
 acorn@^6.0.7, acorn@^6.2.1:
-  version "6.4.0"
-  resolved "https://registry.npm.taobao.org/acorn/download/acorn-6.4.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Facorn%2Fdownload%2Facorn-6.4.0.tgz#b659d2ffbafa24baf5db1cdbb2c94a983ecd2784"
-  integrity sha1-tlnS/7r6JLr12xzbsslKmD7NJ4Q=
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 aggregate-error@^3.0.0:
   version "3.0.1"
@@ -2940,12 +2940,12 @@ ecc-jsbn@~0.1.1:
 
 echarts-liquidfill@^2.0.5:
   version "2.0.5"
-  resolved "http://r.cnpmjs.org/echarts-liquidfill/download/echarts-liquidfill-2.0.5.tgz#0d505a75c2dfb69950e18d440bdf3fe1795a0eed"
+  resolved "https://r.cnpmjs.org/echarts-liquidfill/download/echarts-liquidfill-2.0.5.tgz#0d505a75c2dfb69950e18d440bdf3fe1795a0eed"
   integrity sha1-DVBadcLftplQ4Y1EC98/4XlaDu0=
 
 echarts@^4.6.0:
   version "4.6.0"
-  resolved "http://r.cnpmjs.org/echarts/download/echarts-4.6.0.tgz#b5a47a1046cec93ceeef954f9ee54751340558ec"
+  resolved "https://r.cnpmjs.org/echarts/download/echarts-4.6.0.tgz#b5a47a1046cec93ceeef954f9ee54751340558ec"
   integrity sha1-taR6EEbOyTzu75VPnuVHUTQFWOw=
   dependencies:
     zrender "4.2.0"
@@ -8562,5 +8562,5 @@ yargs@^7.0.0:
 
 zrender@4.2.0, zrender@^4.2.0:
   version "4.2.0"
-  resolved "http://r.cnpmjs.org/zrender/download/zrender-4.2.0.tgz#d001302e155f28de1f9fc7fcd5c254bad28471cf"
+  resolved "https://r.cnpmjs.org/zrender/download/zrender-4.2.0.tgz#d001302e155f28de1f9fc7fcd5c254bad28471cf"
   integrity sha1-0AEwLhVfKN4fn8f81cJUutKEcc8=
