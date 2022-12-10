@@ -2940,12 +2940,12 @@ ecc-jsbn@~0.1.1:
 
 echarts-liquidfill@^2.0.5:
   version "2.0.5"
-  resolved "http://r.cnpmjs.org/echarts-liquidfill/download/echarts-liquidfill-2.0.5.tgz#0d505a75c2dfb69950e18d440bdf3fe1795a0eed"
+  resolved "https://r.cnpmjs.org/echarts-liquidfill/download/echarts-liquidfill-2.0.5.tgz#0d505a75c2dfb69950e18d440bdf3fe1795a0eed"
   integrity sha1-DVBadcLftplQ4Y1EC98/4XlaDu0=
 
 echarts@^4.6.0:
   version "4.6.0"
-  resolved "http://r.cnpmjs.org/echarts/download/echarts-4.6.0.tgz#b5a47a1046cec93ceeef954f9ee54751340558ec"
+  resolved "https://r.cnpmjs.org/echarts/download/echarts-4.6.0.tgz#b5a47a1046cec93ceeef954f9ee54751340558ec"
   integrity sha1-taR6EEbOyTzu75VPnuVHUTQFWOw=
   dependencies:
     zrender "4.2.0"
@@ -6437,9 +6437,9 @@ qs@6.7.0:
   integrity sha1-QdwaAV49WB8WIXdr4xr7KHapsbw=
 
 qs@~6.5.2:
-  version "6.5.2"
-  resolved "https://registry.npm.taobao.org/qs/download/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
-  integrity sha1-yzroBuh0BERYTvFUzo7pjUA/PjY=
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.3.tgz#3aeeffc91967ef6e35c0e488ef46fb296ab76aad"
+  integrity sha512-qxXIEh4pCGfHICj1mAJQ2/2XVZkjCDTcEgfoSQxc/fYivUZxTkk7L3bDBJSoNrEzXI17oUO5Dp07ktqE5KzczA==
 
 quasar@^1.0.0:
   version "1.5.11"
@@ -8562,5 +8562,5 @@ yargs@^7.0.0:
 
 zrender@4.2.0, zrender@^4.2.0:
   version "4.2.0"
-  resolved "http://r.cnpmjs.org/zrender/download/zrender-4.2.0.tgz#d001302e155f28de1f9fc7fcd5c254bad28471cf"
+  resolved "https://r.cnpmjs.org/zrender/download/zrender-4.2.0.tgz#d001302e155f28de1f9fc7fcd5c254bad28471cf"
   integrity sha1-0AEwLhVfKN4fn8f81cJUutKEcc8=
